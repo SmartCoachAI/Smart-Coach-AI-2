@@ -53,28 +53,4 @@ The project is live and accessible through GitHub Pages:
 
 ---
 
-## 👥 Team
-
-| Role | Name |
-|------|------|
-| Project Manager & Team Lead | Justina Kessler |
-| Customer Research & Service Design | Agustina Lombardi, Martina Piuma |
-| Marketing & Business Model | Catalina Coatz, **Sofia Malizia** |
-
----
-
-## 🧭 License
-
-This project is open-source and available under the **MIT License**.  
-© 2025 SmartCoach AI Team. All rights reserved.
-
----
-
-## 💌 Contact
-
-For partnerships, collaborations, or product demos:  
-📧 smartcoach.ai.team@gmail.com  
-🌐 [LinkedIn – SmartCoach AI](https://linkedin.com)
-
----
 
