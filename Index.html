@@ -7,9 +7,14 @@
 <meta name="description" content="Personalized coaching at scale for gyms: training, nutrition and recovery powered by AI."/>
 <style>
   :root{
-    --bg:#0b1324; --bg2:#0d1730; --text:#ffffff; --muted:#bfc6d4;
-    --card:rgba(255,255,255,0.05); --line:rgba(255,255,255,0.12);
-    --brand:#f5c518; --brand-ink:#0b1324;
+    --bg:#006887;           /* nuevo fondo */
+    --bg2:#005873;          /* tono secundario */
+    --text:#ffffff;
+    --muted:#bfc6d4;
+    --card:rgba(255,255,255,0.05);
+    --line:rgba(255,255,255,0.12);
+    --brand:#f5c518;
+    --brand-ink:#0b1324;
     --radius:18px;
   }
   *{box-sizing:border-box}
@@ -22,7 +27,7 @@
   header{
     position:sticky;top:0;z-index:50;
     backdrop-filter:saturate(150%) blur(8px);
-    background:rgba(11,19,36,0.7); border-bottom:1px solid var(--line)
+    background:rgba(0, 30, 45, 0.7); border-bottom:1px solid var(--line)
   }
   .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
   .brand{display:flex;align-items:center;gap:10px;font-weight:800}
@@ -83,6 +88,52 @@
   .sep{height:1px;background:var(--line);margin:16px 0}
   /* smooth scroll */
   html{scroll-behavior:smooth}
+
+  /* ===== Banner (Dashboard) ===== */
+  .section.banner{
+    background: linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.08)), var(--bg2);
+    padding: 96px 0;
+  }
+  .section.banner .container{
+    display:grid;
+    gap:28px;
+    align-items:center;
+  }
+  @media(min-width:980px){
+    .section.banner .container{
+      grid-template-columns: 1.15fr 1fr;
+    }
+  }
+  .banner h2{
+    font-size:40px;
+    line-height:1.15;
+    margin:0 0 8px 0;
+  }
+  .banner p.sub{
+    color:#e9edf7;
+    opacity:.95;
+    font-size:18px;
+    margin:8px 0 14px 0;
+  }
+  .banner .kicker{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    background:rgba(245,197,24,.15);
+    color:var(--brand);
+    font-weight:700;
+    font-size:12px;
+    margin-bottom:10px;
+  }
+  .banner .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+
+  /* success message */
+  .success-message{
+    margin-top:12px;
+    color:var(--brand);
+    font-weight:600;
+    display:none;
+  }
 </style>
 </head>
 <body>
@@ -90,9 +141,6 @@
 <header>
   <div class="container nav">
     <a href="#home" class="brand">
-      <!-- Your exact logo embedded (no external file needed) -->
-      <img alt="SmartCoach AI logo" width="120" height="52"
-           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAABkCAYAAAB0t2lSAA...<?base64-truncated?>..."/>
       <span class="logo-txt">SmartCoach <span style="color:var(--brand)">AI</span></span>
     </a>
     <nav aria-label="primary">
@@ -246,21 +294,27 @@
     </div>
   </section>
 
-  <!-- DASHBOARD -->
-  <section id="dashboard" class="section alt">
-    <div class="container grid grid-2" style="align-items:center">
+  <!-- DASHBOARD BANNER -->
+  <section id="dashboard" class="section banner">
+    <div class="container">
+      <!-- Columna izquierda: copy centrado verticalmente -->
       <div>
-        <h2>Coach & manager panel</h2>
-        <ul class="muted" style="margin-top:10px;line-height:1.7">
-          <li>Active/inactive users, imminent churn alerts.</li>
+        <span class="kicker">Coach & Manager Panel</span>
+        <h2>All your member insights in one place</h2>
+        <p class="sub">Turn your location into a smart training hub — higher retention, less workload, safer progress.</p>
+        <ul class="muted" style="margin-top:6px;line-height:1.7">
+          <li>Active/inactive users & imminent churn alerts.</li>
           <li>Retention, attendance and staff time saved.</li>
           <li>Comparisons by location and plan (Basic vs. Premium).</li>
           <li>Safe overrides for rehab or injury cases.</li>
         </ul>
-        <div style="margin-top:14px">
+        <div class="cta-row">
           <a href="#demo" class="btn btn-brand">See a demo</a>
+          <a href="#features" class="btn btn-ghost">Explore features</a>
         </div>
       </div>
+
+      <!-- Columna derecha: tarjeta KPI -->
       <div class="card">
         <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:12px">
           <div class="card kpi"><div class="label">90-day retention</div><div class="value">+12%</div></div>
@@ -328,27 +382,25 @@
       <h2>Ready to power your gym with AI?</h2>
       <p class="muted" style="margin-top:6px">Book a demo and receive an onboarding kit with branding, retention KPIs and launch plan.</p>
 
-      <form id="demo" class="grid" style="margin-top:16px;gap:12px">
+      <!-- ✅ FORMSPREE FORM -->
+      <form id="demo" action="https://formspree.io/f/mdkwqgkq" method="POST" class="grid" style="margin-top:16px;gap:12px">
         <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px">
-          <input id="f-name" placeholder="Name and gym" required />
-          <input id="f-email" type="email" placeholder="Email" required />
+          <input name="name" placeholder="Name and gym" required />
+          <input type="email" name="email" placeholder="Email" required />
         </div>
-        <input id="f-phone" placeholder="Phone (optional)" />
-        <textarea id="f-msg" rows="4" placeholder="Tell us briefly about your case"></textarea>
+        <input name="phone" placeholder="Phone (optional)" />
+        <textarea name="message" rows="4" placeholder="Tell us briefly about your case"></textarea>
         <button type="submit" class="btn btn-brand">Submit request</button>
       </form>
       <p class="muted" style="margin-top:8px;font-size:12px">By submitting, you agree to our Terms of Service and Privacy Policy.</p>
+      <p id="success" class="success-message">✅ Thank you! We’ll contact you shortly.</p>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="container" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between">
-    <div class="row" style="align-items:center;gap:10px">
-      <img alt="SmartCoach AI small logo" style="height:24px;width:auto"
-           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAABkCAYAAAB0t2lSAA...<?base64-truncated?>...">
-      <span class="muted" style="font-size:14px">© <span id="year"></span> SmartCoach AI. All rights reserved.</span>
-    </div>
+    <span class="muted" style="font-size:14px">© <span id="year"></span> SmartCoach AI. All rights reserved.</span>
     <div class="row muted" style="font-size:14px">
       <a href="#">Terms</a>
       <a href="#">Privacy</a>
@@ -361,22 +413,33 @@
   // Dynamic year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mailto submit (kept like your original static version)
-  document.getElementById('demo').addEventListener('submit', function(e){
+  // Formspree async submit + UX message
+  const form = document.getElementById('demo');
+  const successMsg = document.getElementById('success');
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    var name = encodeURIComponent(document.getElementById('f-name').value.trim());
-    var email = encodeURIComponent(document.getElementById('f-email').value.trim());
-    var phone = encodeURIComponent(document.getElementById('f-phone').value.trim());
-    var msg = encodeURIComponent(document.getElementById('f-msg').value.trim());
-    var body =
-      "Name and gym: " + name + "%0D%0A" +
-      "Email: " + email + "%0D%0A" +
-      "Phone: " + phone + "%0D%0A" +
-      "Message: " + msg;
-    // Change the recipient if needed
-    window.location.href = "mailto:hello@smartcoach.ai?subject=SmartCoach%20AI%20Demo&body=" + body;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        successMsg.style.display = 'block';
+        // opcional: scroll al mensaje
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        const data = await res.json().catch(()=> ({}));
+        alert('❌ There was an error. Please try again.' + (data?.errors ? '\n' + data.errors.map(e=>e.message).join('\n') : ''));
+      }
+    } catch (err) {
+      alert('❌ Network error. Please try again later.');
+    }
   });
 </script>
 
 </body>
 </html>
+
